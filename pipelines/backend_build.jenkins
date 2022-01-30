@@ -13,7 +13,7 @@ podTemplate(label: POD_LABEL, containers: [
             '--context=https://github.com/p-le/test-todoapp-backend.git',
             '--destination=devops-cicd-repository',
             '-v=debug'
-        ]
+        ],
         ttyEnabled: true
     )
 ], volumes: [
