@@ -6,7 +6,7 @@ def WORKSPACE   = "${HOME}/workspace/build-todoapp-backend"
 def WORKDIR     = "${HOME}/src/github.com/p-le/test-todoapp-backend/"
 
 podTemplate(label: POD_LABEL, containers: [
-    containerTemplate(name: 'kaniko', image: gcr.io/kaniko-project/executor:latest'), 
+    containerTemplate(name: 'kaniko', image: 'gcr.io/kaniko-project/executor:latest'), 
     args: '--context=https://github.com/p-le/test-todoapp-backend.git',
 ]) {
     node(POD_LABEL) {
