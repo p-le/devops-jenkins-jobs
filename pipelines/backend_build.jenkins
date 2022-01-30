@@ -10,16 +10,14 @@ podTemplate(label: POD_LABEL, containers: [
         name: 'kaniko',
         image: 'gcr.io/kaniko-project/executor:debug',
         command: 'sleep',
-        args: '99d',
-        ttyEnabled: true
+        args: '99d'
     )
-], volumes: [
-    configMapVolume(configMapName: 'artifact-config', mountPath: '/kaniko/.docker/config.json')
 ]) {
     node(POD_LABEL) {
-        stage('Fetch Backend Repository') {
+        stage('Build Image') {
+            git 'https://github.com/p-le/test-todoapp-backend.git'
             container('kaniko') {
-                sh 'echo "hello world"'
+                sh '/kaniko/executor -f `pwd`/Dockerfile -c `pwd` --insecure --skip-tls-verify --cache=true --destination=asia-northeast1-docker.pkg.dev/phu-le-it/devops-cicd-repository/todoapp-backend:prod'
             }
         }
     }
