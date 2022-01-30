@@ -12,12 +12,15 @@ podTemplate(label: POD_LABEL, containers: [
         command: 'sleep',
         args: '99d'
     )
+], volumes: [
+    configMapVolume(configMapName: 'artifact-config', mountPath: '/kaniko/.docker/config.json')
 ]) {
     node(POD_LABEL) {
         stage('Build Image') {
             git 'https://github.com/p-le/test-todoapp-backend.git'
             container('kaniko') {
-                sh '/kaniko/executor -f `pwd`/Dockerfile -c `pwd` --insecure --skip-tls-verify --cache=true --destination=asia-northeast1-docker.pkg.dev/phu-le-it/devops-cicd-repository/todoapp-backend:prod'
+                sh 'ls -la .'
+                sh '/kaniko/executor --dockerfile=Dockerfile --cache=true --destination=asia-northeast1-docker.pkg.dev/phu-le-it/devops-cicd-repository/todoapp-backend:prod'
             }
         }
     }
