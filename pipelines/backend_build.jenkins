@@ -17,7 +17,7 @@ podTemplate(label: POD_LABEL, containers: [
 ]) {
     node(POD_LABEL) {
         stage('Fetch Backend Repository') {
-            container('docker') {
+            container('kaniko') {
                 sh 'echo "hello world"'
             }
         }
