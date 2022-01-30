@@ -20,7 +20,6 @@ pipelineJob('build-backend-operator') {
                 git {
                     remote {
                         url('https://github.com/p-le/test-jenkins-jobs.git')
-                        credentials('jenkins-operator')
                     }
                     branches('*/master')
                 }
