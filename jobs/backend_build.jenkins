@@ -23,7 +23,7 @@ pipelineJob('build-backend-operator') {
             description('Select a Git Tag you want to build image')
             tagFilter('*')
             type('PT_TAG')
-            useRepository('git@github.com:p-le/test-todoapp-backend.git')
+            useRepository('*/test-todoapp-backend.git')
             quickFilterEnabled(false)
             selectedValue('NONE')
             sortMode('NONE')
