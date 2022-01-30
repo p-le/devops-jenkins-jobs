@@ -2,6 +2,10 @@
 
 pipelineJob('build-backend-operator') {
     displayName('Build Backend Todo App Image')
+    
+    wrappers {
+        colorizeOutput()
+    }
 
     logRotator {
         numToKeep(10)
