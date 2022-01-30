@@ -17,10 +17,15 @@ pipelineJob('build-backend-operator') {
     parameters {
         gitParameter {
             name('SELECTED_TAG')
+            defaultValue('master')
+            branchFilter('origin/(.*)')
             description('Select a Git Tag you want to build image')
             tagFilter('v*')
             type('PT_TAG')
             useRepository('https://github.com/p-le/test-jenkins-jobs.git')
+            quickFilterEnabled(false)
+            selectedValue('NONE')
+            sortMode('NONE')
         }
     }
 
