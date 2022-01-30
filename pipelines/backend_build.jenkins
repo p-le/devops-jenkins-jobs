@@ -9,11 +9,15 @@ podTemplate(label: POD_LABEL, containers: [
     containerTemplate(
         name: 'kaniko',
         image: 'gcr.io/kaniko-project/executor:debug',
+        envVars: [
+            containerEnvVar(key: 'GOOGLE_APPLICATION_CREDENTIALS', value: '/kaniko/kaniko-build-sa.json')
+        ],
         command: 'sleep',
         args: '99d'
     )
 ], volumes: [
-    configMapVolume(configMapName: 'artifact-config', mountPath: '/kaniko/.docker/config.json')
+    configMapVolume(configMapName: 'artifact-config', mountPath: '/kaniko/.docker/config.json'),
+    secretVolume(secretName: 'gcp-credentials', mountPath: '/kaniko/kaniko-build-sa.json')
 ]) {
     node(POD_LABEL) {
         stage('Build Image') {
