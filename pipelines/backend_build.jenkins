@@ -8,7 +8,7 @@ def WORKDIR     = "${HOME}/src/github.com/p-le/test-todoapp-backend/"
 podTemplate(label: POD_LABEL, containers: [
     containerTemplate(
         name: 'kaniko',
-        image: 'gcr.io/kaniko-project/executor:latest',
+        image: 'gcr.io/kaniko-project/executor:debug',
         envVars: [
             containerEnvVar(key: 'GOOGLE_APPLICATION_CREDENTIALS', value: '/kaniko/credentials/kaniko-build-sa.json'),
         ],
