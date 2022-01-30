@@ -8,8 +8,8 @@ def WORKDIR     = "${HOME}/src/github.com/p-le/test-todoapp-backend/"
 podTemplate(label: POD_LABEL, containers: [
     containerTemplate(
         name: 'kaniko',
-        image: 'gcr.io/kaniko-project/executor:latest',
-        args: '--context=https://github.com/p-le/test-todoapp-backend.git --destination=devops-cicd-repository/todoapp-backend:prod -v=debug',
+        image: 'gcr.io/kaniko-project/executor:debug',
+        args: '--context=https://github.com/p-le/test-todoapp-backend.git --destination=sia-northeast1-docker.pkg.dev/phu-le-it/devops-cicd-repository/todoapp-backend:prod -v=debug',
         ttyEnabled: true
     )
 ], volumes: [
