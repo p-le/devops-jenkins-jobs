@@ -1,0 +1,31 @@
+#!/usr/bin/env groovy
+
+pipelineJob('deploy-frontend-operator') {
+    displayName('Deploy Frontend Todo App Image')
+
+    logRotator {
+        numToKeep(10)
+        daysToKeep(7)
+    }
+
+    configure { project ->
+        project / 'properties' / 'org.jenkinsci.plugins.workflow.job.properties.DurabilityHintJobProperty' {
+            hint('PERFORMANCE_OPTIMIZED')
+        }
+    }
+
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('https://github.com/p-le/test-jenkins-jobs.git')
+                        credentials('jenkins-operator')
+                    }
+                    branches('*/master')
+                }
+            }
+            scriptPath('pipelines/frontend-deploy.jenkins')
+        }
+    }
+}
