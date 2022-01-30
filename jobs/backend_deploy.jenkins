@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
-pipelineJob('build-frontend-operator') {
-    displayName('Build Frontend Todo App Image')
+pipelineJob('deploy-backend-operator') {
+    displayName('Deploy Backend Todo App Image')
 
     logRotator {
         numToKeep(10)
@@ -25,7 +25,7 @@ pipelineJob('build-frontend-operator') {
                     branches('*/master')
                 }
             }
-            scriptPath('pipelines/backend-build.jenkins')
+            scriptPath('pipelines/backend_deploy.jenkins')
         }
     }
 }

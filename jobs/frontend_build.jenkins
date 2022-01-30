@@ -25,7 +25,7 @@ pipelineJob('build-frontend-operator') {
                     branches('*/master')
                 }
             }
-            scriptPath('pipelines/frontend-build.jenkins')
+            scriptPath('pipelines/frontend_build.jenkins')
         }
     }
 }
