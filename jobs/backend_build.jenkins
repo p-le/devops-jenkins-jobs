@@ -15,10 +15,11 @@ pipelineJob('build-backend-operator') {
     }
 
     parameters {
-        gitParam('SELECTED_TAG') {
+        gitParameter {
+            name('SELECTED_TAG')
             description('Select a Git Tag you want to build image')
             tagFilter('v*')
-            type('TAG')
+            useRepository('https://github.com/p-le/test-jenkins-jobs.git')
         }
     }
 
