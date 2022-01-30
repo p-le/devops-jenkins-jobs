@@ -10,7 +10,7 @@ podTemplate(label: POD_LABEL, containers: [
         name: 'kaniko',
         image: 'gcr.io/kaniko-project/executor:debug',
         command: 'sleep',
-        args: '99d'
+        args: '99d',
         ttyEnabled: true
     )
 ], volumes: [
