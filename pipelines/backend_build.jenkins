@@ -9,11 +9,7 @@ podTemplate(label: POD_LABEL, containers: [
     containerTemplate(
         name: 'kaniko',
         image: 'gcr.io/kaniko-project/executor:latest',
-        args: [
-            '--context=https://github.com/p-le/test-todoapp-backend.git',
-            '--destination=devops-cicd-repository',
-            '-v=debug'
-        ],
+        args: '--context=https://github.com/p-le/test-todoapp-backend.git --destination=devops-cicd-repository/todoapp-backend:prod -v=debug',
         ttyEnabled: true
     )
 ], volumes: [
