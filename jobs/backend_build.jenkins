@@ -19,6 +19,7 @@ pipelineJob('build-backend-operator') {
             name('SELECTED_TAG')
             description('Select a Git Tag you want to build image')
             tagFilter('v*')
+            type('PT_TAG')
             useRepository('https://github.com/p-le/test-jenkins-jobs.git')
         }
     }
@@ -31,7 +32,7 @@ pipelineJob('build-backend-operator') {
                         url('https://github.com/p-le/test-jenkins-jobs.git')
                         credentials('jenkins-operator')
                     }
-                    branches('*/master')
+                    branches('*/${params.SELECTED_TAG}')
                 }
             }
             scriptPath('pipelines/backend_build.jenkins')
