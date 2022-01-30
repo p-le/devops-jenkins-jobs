@@ -9,9 +9,11 @@ podTemplate(label: POD_LABEL, containers: [
     containerTemplate(
         name: 'kaniko',
         image: 'gcr.io/kaniko-project/executor:latest',
-        ttyEnabled: true,
-        args: '--context=https://github.com/p-le/test-todoapp-backend.git'
+        args: '--context=https://github.com/p-le/test-todoapp-backend.git',
+        ttyEnabled: true
     )
+], volumes: [
+    configMapVolume(name: 'artifact-config', mountPath: '/kaniko/.docker/config.json')
 ]) {
     node(POD_LABEL) {
         stage('Fetch Backend Repository') {
