@@ -20,8 +20,13 @@ podTemplate(label: POD_LABEL, containers: [
     secretVolume(secretName: 'gcp-credentials', mountPath: '/kaniko/credentials')
 ]) {
     node(POD_LABEL) {
-        stage('Build Image') {
+        stage('Fetch Repository') {
             git 'https://github.com/p-le/test-todoapp-backend.git'
+        }
+        stage('Select Tag') {
+            git 'https://github.com/p-le/test-todoapp-backend.git'
+        }
+        stage('Build Image') {
             container('kaniko') {
                 ansiColor('xterm') {
                     sh '/kaniko/executor --context=dir://./ --dockerfile=Dockerfile --destination=asia-northeast1-docker.pkg.dev/phu-le-it/devops-cicd-repository/todoapp-backend:prod'
