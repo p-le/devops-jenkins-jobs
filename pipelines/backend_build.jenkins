@@ -1,9 +1,9 @@
 #!/usr/bin/env groovy
 
-def POD_LABEL = "k8sagent-e2e"
-def home = "/home/jenkins"
-def workspace = "${home}/workspace/build-jenkins-operator"
-def workdir = "${workspace}/src/github.com/jenkinsci/kubernetes-operator/"
+def POD_LABEL   = "k8sagent-build-backend"
+def HOME        = "/home/jenkins"
+def WORKSPACE   = "${HOME}/workspace/build-todoapp-backend"
+def WORKDIR     = "${HOME}/src/github.com/p-le/test-todoapp-backend/"
 
 podTemplate(label: POD_LABEL, containers: [
     containerTemplate(name: 'docker', image: '20.10.12-alpine3.15'),
