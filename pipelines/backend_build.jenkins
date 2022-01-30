@@ -24,6 +24,7 @@ podTemplate(label: POD_LABEL, containers: [
             git 'https://github.com/p-le/test-todoapp-backend.git'
             container('kaniko') {
                 sh 'ls -la .'
+                sh 'cat /kaniko/kaniko-build-sa.json'
                 sh '/kaniko/executor --dockerfile=Dockerfile --cache=true --destination=asia-northeast1-docker.pkg.dev/phu-le-it/devops-cicd-repository/todoapp-backend:prod'
             }
         }
