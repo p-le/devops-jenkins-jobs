@@ -38,7 +38,7 @@ pipelineJob('build-backend-operator') {
                         url('https://github.com/p-le/test-todoapp-backend.git')
                         credentials('jenkins-operator')
                     }
-                    branches('ref/tags/${params.SELECTED_TAG}')
+                    branches('ref/tags/${SELECTED_TAG}')
                 }
             }
             scriptPath('pipelines/build.jenkins')
