@@ -17,7 +17,7 @@ pipelineJob('build-backend-operator') {
     parameters {
         gitParameter {
             name('SELECTED_TAG')
-            defaultValue('origin/master')
+            defaultValue('')
             branch('')
             branchFilter('')
             description('Select a Git Tag you want to build image')
