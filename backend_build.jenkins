@@ -17,13 +17,13 @@ pipelineJob('build-backend-operator') {
     parameters {
         gitParameter {
             name('SELECTED_TAG')
-            defaultValue('')
+            defaultValue('origin/master')
             branch('')
             branchFilter('')
             description('Select a Git Tag you want to build image')
             tagFilter('*')
             type('PT_TAG')
-            useRepository('*')
+            useRepository('https://github.com/p-le/test-todoapp-backend.git')
             quickFilterEnabled(false)
             selectedValue('NONE')
             sortMode('NONE')
