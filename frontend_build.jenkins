@@ -1,0 +1,47 @@
+#!/usr/bin/env groovy
+
+pipelineJob('build-backend-operator') {
+    displayName('Build Backend Todo App Image')
+
+    logRotator {
+        numToKeep(10)
+        daysToKeep(7)
+    }
+
+    configure { project ->
+        project / 'properties' / 'org.jenkinsci.plugins.workflow.job.properties.DurabilityHintJobProperty' {
+            hint('PERFORMANCE_OPTIMIZED')
+        }
+    }
+
+    parameters {
+        gitParameter {
+            name('SELECTED_TAG')
+            defaultValue('master')
+            branch('')
+            branchFilter('origin/(.*)')
+            description('Select a Git Tag you want to build image')
+            tagFilter('*')
+            type('PT_TAG')
+            useRepository('*/test-todoapp-backend.git')
+            quickFilterEnabled(false)
+            selectedValue('NONE')
+            sortMode('NONE')
+        }
+    }
+
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('https://github.com/p-le/test-todoapp-backend.git')
+                        credentials('jenkins-operator')
+                    }
+                    branches('*/${params.SELECTED_TAG}')
+                }
+            }
+            scriptPath('pipelines/build.jenkins')
+        }
+    }
+}
