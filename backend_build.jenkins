@@ -19,7 +19,7 @@ pipelineJob('build-backend-operator') {
             name('SELECTED_TAG')
             defaultValue('')
             branch('')
-            branchFilter('')
+            branchFilter('.*')
             description('Select a Git Tag you want to build image')
             tagFilter('*')
             type('PT_TAG')
