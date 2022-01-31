@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
-pipelineJob('deploy-frontend-operator') {
-    displayName('Deploy Frontend Todo App Image')
+pipelineJob('test-todoapp-infra') {
+    displayName('Test Todo App Infra')
 
     logRotator {
         numToKeep(10)
@@ -19,13 +19,13 @@ pipelineJob('deploy-frontend-operator') {
             scm {
                 git {
                     remote {
-                        url('https://github.com/p-le/test-jenkins-jobs.git')
+                        url('https://github.com/p-le/test-todoapp-infra.git')
                         credentials('jenkins-operator')
                     }
                     branches('*/master')
                 }
             }
-            scriptPath('pipelines/frontend_deploy.jenkins')
+            scriptPath('pipelines/test.jenkins')
         }
     }
 }
