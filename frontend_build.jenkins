@@ -23,7 +23,7 @@ pipelineJob('build-frontend-operator') {
             description('Select a Git Tag you want to build image')
             tagFilter('*')
             type('PT_TAG')
-            useRepository('*/test-todoapp-frontend.git')
+            useRepository('*')
             quickFilterEnabled(false)
             selectedValue('NONE')
             sortMode('NONE')
