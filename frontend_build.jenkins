@@ -26,7 +26,7 @@ pipelineJob('build-frontend-operator') {
             useRepository('https://github.com/p-le/test-todoapp-frontend.git')
             quickFilterEnabled(false)
             selectedValue('NONE')
-            sortMode('NONE')
+            sortMode('DESCENDING_SMART')
         }
     }
 
